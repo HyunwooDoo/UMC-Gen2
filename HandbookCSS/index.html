@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head태그에는 SEO:검색엔진 최적화를 위한 meta데이터들을 입력 -->
+<head>
+  <meta charset="UTF-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HyunwooD</title>
+  <!-- style태그에 작성해도 동일한 클래스 레벨일 때는 늦게 작성한 스타일링이 반영됨 -->
+<style>
+    .HoneyBread {
+        color: darkgoldenrod;
+        width: 100px;
+        height: 100px;
+        background-color: #FCEFCB;
+        margin-bottom: 10px;    
+        padding: 10px;
+        border: 10px solid #FAD59A;
+        box-sizing: border-box;
+        
+    }
+df
+    .title {
+        outline: 10px solid #E9A319;
+    }
+    .cream {
+        border: 10px solid #A86523;
+        /* box-sizing을 border-box로하면 padding, border에 상관없이 width, height로 정한 사이즈를 유지함 */
+        /* padding, border등 추가 스타일을 유지하고 맨 안쪽 content부분을 줄여 widthXheight의 크기를 맞춘다 */
+        /* margin > outline > border > padding > content 순으로 안쪽*/
+        /* margin은 테두리가 아니라 요소간 간격 자체를 만들어주는 용도. 완전히 크기만큼 테두리를 씌우지 않고 outline, border등을 포함시켜서 간격을 만든다*/
+    } 
+</style>
+
+</head>
+<!-- body태그에 실제로 유저에게 보이는 요소들을 작성해야한다 -->
+<body>
+    <!-- h1태그는 브라우저 자체에서 스타일링이 진행된 태그임
+     폰트가 커지고 진하게 표기 -->
+     <!-- 띄어쓰기로 여러개의 클래스를 부여할 수 있음 => 각각 따로 스타일링 & 공통된 클래스를 공유하여 동시에 스타일링 적용 가능 -->
+  <div class="HoneyBread title">HoneyBrea d</div>
+  <div class="HoneyBread cream">Cream<div>
+</body>
+
+</html>
