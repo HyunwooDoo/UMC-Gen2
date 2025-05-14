@@ -12,18 +12,25 @@
         width: 100px;
         height: 100px;
         background-color: #FCEFCB;
-        margin-bottom: 10px;    
+        margin-bottom: 20px;    
         padding: 10px;
         border: 10px solid #FAD59A;
         box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         
     }
-df
+
     .title {
-        outline: 10px solid #E9A319;
+        outline: 10px solid #A86523;
+        
     }
     .cream {
-        border: 10px solid #A86523;
+        position: relative;
+        top:-120px;
+        left:120px;
+        outline: 10px solid #E9A319;
         /* box-sizing을 border-box로하면 padding, border에 상관없이 width, height로 정한 사이즈를 유지함 */
         /* padding, border등 추가 스타일을 유지하고 맨 안쪽 content부분을 줄여 widthXheight의 크기를 맞춘다 */
         /* margin > outline > border > padding > content 순으로 안쪽*/
@@ -37,7 +44,7 @@ df
     <!-- h1태그는 브라우저 자체에서 스타일링이 진행된 태그임
      폰트가 커지고 진하게 표기 -->
      <!-- 띄어쓰기로 여러개의 클래스를 부여할 수 있음 => 각각 따로 스타일링 & 공통된 클래스를 공유하여 동시에 스타일링 적용 가능 -->
-  <div class="HoneyBread title">HoneyBrea d</div>
+  <div class="HoneyBread title">HoneyBread</div>
   <div class="HoneyBread cream">Cream<div>
 </body>
 
