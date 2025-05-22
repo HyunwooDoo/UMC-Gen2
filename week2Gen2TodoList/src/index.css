@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: ivory;
+}
+
+.todo-container {
+    background-color: #FCEFCB;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) ;
+    width: 350px;
+    text-align: center;
+}
+
+.todo-container__header {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #482808;
+}
+
+.todo-container__form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.todo-container__input {
+    /* input 칸이 버튼 이외 전체를 차지하게 flex:1 */
+    flex: 1;
+    padding: 8px ;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.todo-container__button {
+    background-color:#FAD59A;
+    color: #A86523;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.todo-container__button:hover {
+    background-color: #ffe0ad;
+}
+
+.render-container {
+    /* display: flex의 기본값은 flex-direction: row => 자식요소들을 가로방향으로 나란히 정렬*/ 
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+.render-container__title {
+    font-size: 18px;
+    color: #734618;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.render-container__section {
+    width: 100%;
+    text-align: left;
+}
+
+.render-container__list {
+    list-style: none; /* ul의 점도 없애기 */
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.render-container__item {
+    justify-content: space-between;
+    display: flex;
+    padding: 4px;
+    background-color: #fffcf6;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    align-items: center;
+    font-size: 14px;
+}
+
+.render-container__item-button {
+    background-color: #CAE0BC;
+    color: #40682a;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.render-container__item-button:hover {
+    background-color: #d6e8cb;
+}
+
+/*
+.render-container__item-button-remove {
+    background-color: #D99D81;
+    color: #8a531c;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.render-container__item-button-remove:hover {
+    background-color: #e6af96;
+}
+    */
