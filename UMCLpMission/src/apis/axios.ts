@@ -19,6 +19,10 @@ export const axiosInstance = axios.create({
       LOCAL_STORAGE_KEY.accessToken // LOCAL_STORAGE_KEY에서 accessToken을 가져와서 Bearer 토큰으로 설정
     )}`,
   }, */
+
+  /*
+  쿠키방식 일 때는 withCredentials를 true로 설정해서 쿠키를 포함한 요청을 보낼 수 있도록 함 
+  */
 });
 
 // 요청 인터셉터 설정으로 요청할 때마다 요청을 보내기 전에 accessToken을 갱신해서 무조건 받아올 수 있도록 함

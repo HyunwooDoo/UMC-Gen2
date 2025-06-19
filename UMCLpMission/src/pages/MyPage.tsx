@@ -36,7 +36,11 @@ const Mypage = () => {
   return (
     <div>
       <h1>{data.data?.name} Welcome </h1>
-      <img src={data.data?.avatar || "/HB.png"} alt="User Avatar" />
+      <img
+        className="w-50 h-50"
+        src={data.data?.avatar || "/HB.png"}
+        alt="User Avatar"
+      />
       <h1>{data.data?.email}</h1>
       <button
         className="bg-[#27548A] text-white p-5 py-3 rounded-sm text-sm font-semibold hover:bg-[#1f4471] transition-colors duration-500 cursor-pointer disabled:bg-gray-300"

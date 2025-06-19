@@ -41,6 +41,11 @@ const LoginPage = () => {
       alert(e?.message);
     } */
   };
+  // 구글로그인 함수
+  const handleGoogleLogin = () => {
+    window.location.href =
+      import.meta.env.VITE_SERVER_API_URL + "/v1/auth/google/login";
+  };
 
   // 에러가 있거나, 입력값이 비어있을 때 버튼 비활성화 하기
   const isDisabled =
@@ -81,7 +86,6 @@ const LoginPage = () => {
         {errors?.password && touched.password && (
           <div className="text-red-500 text-sm">{errors.password}</div>
         )}
-
         <button
           className="w-full bg-[#27548A] text-white py-3 rounded-sm text-lg font-medium hover:bg-[#1f4471] transition-colors duration-500 cursor-pointer disabled:bg-gray-300"
           type="button"
@@ -90,6 +94,18 @@ const LoginPage = () => {
         >
           {/* 활성화 비활성화 문구 구분*/}
           {isDisabled ? "Complete Fields" : "Sign In"}
+          {/* 구글로그인 처리 */}
+        </button>
+
+        <button
+          className="w-full bg-[#27548A] text-white py-3 rounded-sm text-lg font-medium hover:bg-[#1f4471] transition-colors duration-500 cursor-pointer"
+          type="button"
+          onClick={handleGoogleLogin}
+        >
+          <div className="flex items-center justify-center gap-2">
+            <img src="/GoogleLogo.png" alt="Google Logo" className="w-6 h-6" />
+            <span>Google Sign in</span>
+          </div>
         </button>
       </div>
     </div>
