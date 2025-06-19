@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { LOCAL_STORAGE_KEY } from "../constants/key";
-import { useLocalStoragae } from "../hooks/useLocalStorge";
+import { useLocalStorage } from "../hooks/useLocalStorge";
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_API_URL, // .env 파일에 정의된 서버 API URL을 사용
@@ -17,7 +17,7 @@ export const axiosInstance = axios.create({
 // 요청 인터셉터 설정으로 요청할 때마다 요청을 보내기 전에 accessToken을 갱신해서 무조건 받아올 수 있도록 함
 // localStorage.getItem은 시작 시점이 고정되어서 나중에 바뀐 토큰을 반영하지 못한다
 axiosInstance.interceptors.request.use((config) => {
-  const { getItem } = useLocalStoragae(LOCAL_STORAGE_KEY.accessToken);
+  const { getItem } = useLocalStorage(LOCAL_STORAGE_KEY.accessToken);
   const token = getItem();
 
   if (token) {

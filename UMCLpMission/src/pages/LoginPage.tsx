@@ -1,11 +1,22 @@
-import { postSignin } from "../apis/auth";
-import { LOCAL_STORAGE_KEY } from "../constants/key";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import useForm from "../hooks/useForm";
-import { useLocalStoragae } from "../hooks/useLocalStorge";
 import { validateSignin, type UserSigninInformation } from "../utils/validate";
+import { useEffect } from "react";
 
 const LoginPage = () => {
-  const { setItem } = useLocalStoragae(LOCAL_STORAGE_KEY.accessToken); // useLocalStorage 훅을 사용하여 key값=accessToken을 넣어 활용
+  const { login, accessToken } = useAuth(); // useAuth 훅을 사용하여 AuthContext에서 인증 상태를 가져오고 로그인 함수 가져오기
+  // 토큰을 넣는 작업을 AuthContext에서 관리하기 때문에 useLocalStorage 훅을 사용하지 않고, AuthContext의 login 함수를 사용하여 토큰을 저장한다.
+  // const { setItem } = useLocalStorage(LOCAL_STORAGE_KEY.accessToken); // useLocalStorage 훅을 사용하여 key값=accessToken을 넣어 활용
+
+  // accessToken이 존재하면 로그인 페이지가 아닌 메인 페이지로 이동
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (accessToken) {
+      navigate("my"); // accessToken이 존재하면 MyPage 페이지로 이동
+    }
+  }, [navigate, accessToken]); // navigate와 accessToken이 변경될 때마다 실행
+
   const { values, errors, touched, getInputProps } =
     useForm<UserSigninInformation>({
       initialValue: {
@@ -15,18 +26,22 @@ const LoginPage = () => {
       validate: validateSignin,
     }); // useForm이 Generic이었고, 그 email, password를 넘겨주는 값이 UserSigninInformation
 
+  // 로그인 버튼 클릭 시 실행되는 함수
   const handleSubmit = async () => {
+    await login(values); // AuthContext의 login 함수를 사용하여 로그인 처리
+    /* AuthContext에서 요청을 받아 처리 하기 때문에 필요 없음 
     try {
       // API요청은 비동기로 처리하기
       // 로그인 처리 로직
       const response = await postSignin(values);
       // localStorage에 토큰 저장
-      setItem(response.data.accessToken); // setItem을 uselocalStorage 훅에서 받아와서 사용
+      setItem(response.data.accessToken); // setItem을 useLocalStorage 훅에서 받아와서 사용
       console.log(response);
     } catch (e) {
       alert(e?.message);
-    }
+    } */
   };
+
   // 에러가 있거나, 입력값이 비어있을 때 버튼 비활성화 하기
   const isDisabled =
     Object.values(errors || {}).some((error) => error.length > 0) || // 오류가 있으면 true

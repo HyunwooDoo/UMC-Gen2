@@ -39,8 +39,14 @@ export const postSignin = async (
 };
 
 export const getMyInfo = async (): Promise<ResponseMyInfoDto> => {
-  const { data } = await axiosInstance.get("/v1/users/me", {}); // 전달하지 않고 요청만 보내고 응답을 받는 방식일 때는 get
+  const { data } = await axiosInstance.get("/v1/users/me"); // 전달하지 않고 요청만 보내고 응답을 받는 방식일 때는 get
   // MyInfo자리에 accessToken을 getItem으로 가져와서 header자리에 저장 -> headers도 axios에서 처리
   // axiosIntance에 공통 URL + headers의 accessToken을 설정해두었기 때문에 불러오기만 하면 됨
+  return data;
+};
+
+export const postLogout = async (): Promise<void> => {
+  const { data } = await axiosInstance.post("/v1/auth/signout");
+
   return data;
 };

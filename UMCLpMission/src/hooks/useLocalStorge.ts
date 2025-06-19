@@ -1,6 +1,6 @@
 // localstorage로 데이터를 저장하고 불러오는 훅을 반복해서 사용할 것임
 // useLocalStorage 훅을 만들어서 key를 받아오고, setItem과 getItem을 반환하는 구조로 만들 것
-export const useLocalStoragae = (key: string) => {
+export const useLocalStorage = (key: string) => {
   const setItem = (value: unknown) => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
