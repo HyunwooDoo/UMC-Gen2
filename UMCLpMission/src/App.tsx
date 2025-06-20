@@ -12,6 +12,8 @@ import Mypage from "./pages/MyPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 import GoogleLoginRedirectPage from "./pages/GoogleLoginRedirectPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // 1. 홈페이지
 // 2. 로그인 페이지
@@ -66,13 +68,19 @@ const protectedRoutes: RouteObject[] = [
 // 라우터 설정
 const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
 
+export const queryClient = new QueryClient();
+
 function App() {
   // 전역상태에서 AuthProvider을 씌워서 인증 상태를 관리할 수 있도록 한다.
   // 라우터 연결
   return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+      // 개발환경에서만 React Query Devtools를 활성화
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+    </QueryClientProvider>
   );
 }
 export default App;
