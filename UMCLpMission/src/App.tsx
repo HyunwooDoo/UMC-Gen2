@@ -68,7 +68,13 @@ const protectedRoutes: RouteObject[] = [
 // 라우터 설정
 const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3, // 쿼리 요청 실패 시 최대 3번 재시도
+    },
+  },
+});
 
 function App() {
   // 전역상태에서 AuthProvider을 씌워서 인증 상태를 관리할 수 있도록 한다.
