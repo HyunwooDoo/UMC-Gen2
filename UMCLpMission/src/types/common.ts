@@ -8,14 +8,12 @@ export type CommonResponse<T> = {
   data: T;
 };
 // Lp 목록 조회를 위한 API 응답 타입
-export type CursorBasedResponse<T> = {
-  status: boolean;
-  statusCode: number;
-  message: string;
+// CommonResponse를 상속받아 data를 확장
+export type CursorBasedResponse<T> = CommonResponse<{
   data: T;
-  nextCursor: number;
+  nextCursor: number | null;
   hasNext: boolean;
-};
+}>;
 
 export type PaginationDto = {
   cursor?: number;

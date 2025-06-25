@@ -27,7 +27,7 @@ function useGetLpList({ cursor, search, order, limit }: PaginationDto) {
     gcTime: 1000 * 60 * 10, // 10분 후에 데이터 갱신: 사용되지 않는 쿼리 데이터가 캐시에 남아있는 시간
     // 조건에 따라 쿼리를 실행 여부를 제어
     // search가 존재할 때만 쿼리를 실행하도록 설정
-    enabled: Boolean(search), // 기본값은 true, false로 설정하면 쿼리가 실행되지 않음
+    // enabled: Boolean(search), // 기본값은 true, false로 설정하면 쿼리가 실행되지 않음
 
     select: (data) => data.data.data, // 쿼리 결과에서 data 속성만 추출하여 반환
 

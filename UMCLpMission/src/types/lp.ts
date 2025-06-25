@@ -12,18 +12,17 @@ export type Likes = {
   lpId: number;
 };
 
-export type ResponseLpListDto = CursorBasedResponse<{
-  // data가 Generic타입으로 정의되어 있었음
-  data: {
-    id: number;
-    title: string;
-    content: string;
-    thumbnail: string;
-    published: boolean;
-    authorId: number;
-    createdAt: Date;
-    updatedAt: Date;
-    tags: Tag[];
-    likes: Likes[];
-  }[];
-}>;
+export type Lp = {
+  id: number;
+  title: string;
+  content: string;
+  thumbnail: string;
+  published: boolean;
+  authorId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  tags: Tag[];
+  likes: Likes[];
+};
+
+export type ResponseLpListDto = CursorBasedResponse<Lp[]>;

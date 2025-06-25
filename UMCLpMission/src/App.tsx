@@ -84,7 +84,7 @@ function App() {
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
-      // 개발환경에서만 React Query Devtools를 활성화
+      {/* 개발환경에서만 React Query Devtools를 활성화 */}
       {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   );
