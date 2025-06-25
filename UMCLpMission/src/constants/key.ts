@@ -7,4 +7,5 @@ export const LOCAL_STORAGE_KEY = {
 
 export const QUERTY_KEY = {
   lps: "lps",
+  myInfo: "myInfo",
 };

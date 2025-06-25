@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import type { Lp } from "../../types/lp";
 
 interface LpCardProps {
@@ -6,10 +7,16 @@ interface LpCardProps {
 }
 
 const LpCard = ({ lp }: LpCardProps) => {
+  const navigate = useNavigate();
+
   // lp가 넘겨받은 Props객체를 구조분해해서 lp만 추출해서 lp.title같은 데이터들을 사용할 수 있는 것
   return (
+    // 클릭 시 해당 LP의 상세 페이지로 이동
     // 영화 데이터 카드
-    <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
+    <div
+      onClick={() => navigate(`/v1/lps/${lp.id}`)}
+      className="relative cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500"
+    >
       <img
         src={lp.thumbnail}
         alt={lp.title}
