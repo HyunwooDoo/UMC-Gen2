@@ -13,9 +13,7 @@ function useGetInfiniteLpList(
       getLpList({ cursor: pageParam, limit, search, order }),
     queryKey: [QUERTY_KEY.lps, search, order],
     initialPageParam: 0, // 초기 페이지 파라미터 설정
-    getNextPageParam: (lastPage, allPages) => {
-      console.log(lastPage, allPages);
-
+    getNextPageParam: (lastPage) => {
       return lastPage.data.hasNext ? lastPage.data.nextCursor : undefined;
     },
   });

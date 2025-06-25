@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useGetInfiniteLpList from "../hooks/queries/useGetInfiniteLpList";
 import { PAGINATION_ORDER } from "../enums/common";
 import { useInView } from "react-intersection-observer";
+import LpCard from "../components/LpCard/LpCard";
+import LpCardSkeletonList from "../components/LpCard/LpCardSkeletonList";
 
 const HomePage = () => {
   const [search, setSearch] = useState("");
@@ -23,7 +25,7 @@ const HomePage = () => {
     isPending,
     fetchNextPage,
     isError,
-  } = useGetInfiniteLpList(5, search, PAGINATION_ORDER.desc);
+  } = useGetInfiniteLpList(10, search, PAGINATION_ORDER.desc);
 
   const { ref, inView } = useInView({ threshold: 0 });
 
@@ -35,9 +37,6 @@ const HomePage = () => {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  if (isPending) {
-    return <div className="text-white">Loading...</div>;
-  }
   if (isError) {
     return <div className="text-white">Error occurred</div>;
   }
@@ -56,27 +55,18 @@ const HomePage = () => {
       <input value={input} onChange={(e) => setInput(e.target.value)} />
       <button onClick={() => setSearch(input)}>검색</button>
       <div className="text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {isPending && <LpCardSkeletonList count={3} />}
         {lps?.pages
           ?.map((page) => page.data.data)
           ?.flat()
           ?.map((lp) => (
-            <div
-              key={lp.id}
-              className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500"
-            >
-              <img
-                src={lp.thumbnail}
-                alt={lp.title}
-                className="object-cover w-full h-48"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-transparent bg-opacity-75 p-2">
-                <h3 className="text-white text-sm font-semibold">{lp.title}</h3>
-              </div>
-            </div>
+            // lp={lp}: lp라는 이름의 데이터를 LpCard 컴포넌트에 전달
+            <LpCard key={lp.id} lp={lp} />
           ))}
+        {isFetching && <LpCardSkeletonList count={3} />}
       </div>
       {/* 무한 스크롤을 위한 ref 설정 */}
-      <div ref={ref}>{isFetching && <div>Loading</div>}</div>
+      <div ref={ref} className="h-2"></div>
     </div>
   );
 };
